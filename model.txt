@@ -1,0 +1,9 @@
+project-new --named konfiguration --type war
+jpa-new-entity --named Konfiguration --container WILDFLY --targetPackage buchungstool.model.config
+jpa-new-field --named winterPausenGrenze --type int
+jpa-new-field --named sommerPausenGrenze --type int
+jpa-new-field --named defaultMinPlaetze --type int
+jpa-new-field --named defaultMaxPlaetze --type int
+jpa-new-entity --named SkipEntry --targetPackage buchungstool.model.config
+jpa-new-field --named value --type String
+scaffold-generate --targets buchungstool.model.config.Konfiguration buchungstool.model.config.SkipEntry

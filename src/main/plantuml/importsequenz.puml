@@ -1,0 +1,13 @@
+@startuml
+
+[*] --> IcsEintrag
+IcsEintrag --> PreFiltering
+PreFiltering --> TransformationInternesModel
+TransformationInternesModel --> PostFiltering
+PostFiltering --> [*]
+
+note right of PreFiltering : Technische Filterung von\nungültigen Einträgen oder\nz.B. Geburts- und Feiertagen
+
+note right of PostFiltering : Aktuell noch ohne Funktionalität
+
+@enduml

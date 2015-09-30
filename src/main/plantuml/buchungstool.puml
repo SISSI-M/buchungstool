@@ -1,0 +1,17 @@
+@startuml
+title Buchungstool Funktionen
+
+left to right direction
+actor User
+rectangle Funktionen {
+User -> (Importiert\nKalendar)
+User -> (Anzeige von\nImport-Ergebnissen)
+(Anzeige von\nImport-Ergebnissen)
+User -> (Download BenutzerReports)
+User -> (Konfiguration)
+
+note right of (Anzeige von\nImport-Ergebnissen) : z.B. Warnungen
+note right of (Download BenutzerReports) : Reports für Brutto/Nettostunden.
+note right of (Konfiguration) : Beinhaltet z.B. Min/Max Arbeitsplätze, Ausnahme wie z.B. Feiertage
+}
+@enduml

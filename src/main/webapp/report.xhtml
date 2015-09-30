@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/resources/scaffold/pageTemplate.xhtml">
+
+    <ui:param name="pageTitle" value="Welcome to Buchungstool V2"/>
+
+    <ui:define name="header">
+        Welcome to Buchungstool V2
+    </ui:define>
+
+    <ui:define name="main">
+
+        <h:panelGroup>
+            Hier Filtermöglichkeiten hin.
+        </h:panelGroup>
+
+        <h:dataTable value="#{reportingBean.create()}" var="event"
+                     styleClass="styleClass">
+
+            <h:column>
+                <f:facet name="header">Name</f:facet>
+                #{event.username}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Arbeitszeit Brutto</f:facet>
+                #{event.sumBrutto}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Arbeitszeit Netto</f:facet>
+                #{event.sumNetto}
+            </h:column>
+        </h:dataTable>
+        <h:panelGroup styleClass="buttons">
+            <h:outputLink value="rest/benutzerreport">Download als CSV</h:outputLink><br/>
+            <h:outputLink value="rest/benutzerreport/excel">Download als Excel</h:outputLink>
+        </h:panelGroup>
+    </ui:define>
+
+</ui:composition>

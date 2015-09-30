@@ -1,0 +1,109 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="page" value='#{konfigurationBean.page}'/>
+		<f:event type="preRenderView" listener='#{konfigurationBean.paginate}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="Search Konfiguration entities"/>
+
+	<ui:define name="header">
+		Konfiguration
+	</ui:define>
+
+	<ui:define name="subheader">
+		Search Konfiguration entities
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:form id="search">
+			<f:validateBean disabled="true">
+				<h:panelGroup styleClass="search">
+
+					<h:panelGrid columnClasses="label,component,required" columns="3">
+						<h:outputLabel for="konfigurationBeanExampleWinterPausenGrenze" value="Winter Pausen Grenze:"/>
+						<h:panelGroup>
+							<h:inputText id="konfigurationBeanExampleWinterPausenGrenze" value="#{konfigurationBean.example.winterPausenGrenze}"/>
+							<h:message for="konfigurationBeanExampleWinterPausenGrenze" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="konfigurationBeanExampleSommerPausenGrenze" value="Sommer Pausen Grenze:"/>
+						<h:panelGroup>
+							<h:inputText id="konfigurationBeanExampleSommerPausenGrenze" value="#{konfigurationBean.example.sommerPausenGrenze}"/>
+							<h:message for="konfigurationBeanExampleSommerPausenGrenze" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="konfigurationBeanExampleDefaultMinPlaetze" value="Default Min Plaetze:"/>
+						<h:panelGroup>
+							<h:inputText id="konfigurationBeanExampleDefaultMinPlaetze" value="#{konfigurationBean.example.defaultMinPlaetze}"/>
+							<h:message for="konfigurationBeanExampleDefaultMinPlaetze" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="konfigurationBeanExampleDefaultMaxPlaetze" value="Default Max Plaetze:"/>
+						<h:panelGroup>
+							<h:inputText id="konfigurationBeanExampleDefaultMaxPlaetze" value="#{konfigurationBean.example.defaultMaxPlaetze}"/>
+							<h:message for="konfigurationBeanExampleDefaultMaxPlaetze" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+					</h:panelGrid>
+					<h:panelGroup styleClass="buttons">
+						<h:commandLink value="Search" action='#{konfigurationBean.search}' styleClass="btn btn-primary"/>
+						<h:commandLink value="Create New" action='#{konfigurationBean.create}' styleClass="btn btn-primary"/>
+					</h:panelGroup>
+				</h:panelGroup>
+			</f:validateBean>
+			
+			<h:dataTable id="konfigurationBeanPageItems" styleClass="data-table" value="#{konfigurationBean.pageItems}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Winter Pausen Grenze"/>
+					</f:facet>
+					<h:link outcome="/konfiguration/view">
+						<f:param name="id" value="#{_item.id}"/>
+						<h:outputText id="itemWinterPausenGrenze" value="#{_item.winterPausenGrenze}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Sommer Pausen Grenze"/>
+					</f:facet>
+					<h:link outcome="/konfiguration/view">
+						<f:param name="id" value="#{_item.id}"/>
+						<h:outputText id="itemSommerPausenGrenze" value="#{_item.sommerPausenGrenze}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Default Min Plaetze"/>
+					</f:facet>
+					<h:link outcome="/konfiguration/view">
+						<f:param name="id" value="#{_item.id}"/>
+						<h:outputText id="itemDefaultMinPlaetze" value="#{_item.defaultMinPlaetze}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Default Max Plaetze"/>
+					</f:facet>
+					<h:link outcome="/konfiguration/view">
+						<f:param name="id" value="#{_item.id}"/>
+						<h:outputText id="itemDefaultMaxPlaetze" value="#{_item.defaultMaxPlaetze}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<ui:include src="/resources/scaffold/paginator.xhtml">
+				<ui:param name="paginatorBean" value='#{konfigurationBean}'/>
+			</ui:include>
+		</h:form>
+			
+	</ui:define>
+
+</ui:composition>

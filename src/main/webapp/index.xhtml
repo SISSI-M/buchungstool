@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/resources/scaffold/pageTemplate.xhtml">
+
+    <ui:param name="pageTitle" value="Welcome to Buchungstool V2"/>
+
+    <ui:define name="header">
+        Welcome to Buchungstool V2
+    </ui:define>
+
+    <ui:define name="main">
+        <h2 class="success">
+            Your application is running.
+        </h2>
+
+        <h:form rendered="#{uploadBean.part eq null}" enctype="multipart/form-data">
+            <h:messages globalOnly="true" styleClass="error"/>
+            <h:inputFile value="#{uploadBean.part}"></h:inputFile>
+            <h:commandButton action="#{uploadBean.upload()}" value="Upload"/>
+        </h:form>
+
+        <h:panelGrid rendered="#{uploadBean.part ne null}" columnClasses="label,component,required" columns="2">
+            <h:outputLabel class="success" value="#{importResult.fileName} erfolgreich importiert"/>
+            <h:outputLink value="report.xhtml">Zum Reporting</h:outputLink>
+        </h:panelGrid>
+    </ui:define>
+
+</ui:composition>
